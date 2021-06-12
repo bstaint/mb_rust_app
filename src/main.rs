@@ -17,6 +17,8 @@ fn main() -> Result {
 
     APP.mb
         .write()?
+        .SetDebugConfig("antiAlias", "1")
+        .SetDebugConfig("wakeMinInterval", "6")
         .CreateWebWindow(Window {
             width: 600,
             height: 400,
