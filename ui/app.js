@@ -10,11 +10,13 @@ const vm = new Vue({
     }
   }),
   methods: {
-    handleClick: function() {
+    handleClick: () => {
+      vm.selected = "about-page";
       vm.$indicator.open();
       update_website();
     },
-    handleSystemStat: function() {
+    handleSystemStat: () => {
+      vm.selected = "main-page";
       system_stat();
     }
   }

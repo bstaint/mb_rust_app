@@ -26,6 +26,12 @@
       height: 200px;
       width: 80%
     }
+    .mt-progress {
+      padding: 0 10px;
+    }
+    .mt-progress .mb-process-label {
+      margin-right: 10px;
+    }
   </style>
  </head>
  <body>
@@ -34,8 +40,9 @@
    <mt-button @click.native="handleClick">关于</mt-button>
     <mt-tab-container v-model="selected">
      <mt-tab-container-item id="main-page" v-infinite-scroll>
-       <mt-cell title="CPU" :value="system_stat.cpu_load"></mt-cell>
-       <mt-cell title="Memery" :value="system_stat.memery_free"></mt-cell>
+       <!-- <mt-cell title="CPU" :value="Math.round(system_stat.cpu_load * 100)+' %'"></mt-cell> -->
+       <mt-progress :value="Math.round(system_stat.cpu_load * 100)" :bar-height="5"><div class="mb-process-label" slot="start">CPU</div></mt-progress>
+       <mt-cell title="Mem" :value="(system_stat.memery_free / Math.pow(1024, 3)).toFixed(2)+' G'"></mt-cell>
      </mt-tab-container-item>
      <mt-tab-container-item id="about-page">
        <mt-cell title="版本号" :value="version"></mt-cell>
