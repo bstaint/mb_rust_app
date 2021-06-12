@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8" />
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="./ui/reset.css" />
+  <link rel="stylesheet" href="./ui/style.css" />
+  <!-- 先引入 Vue -->
+  <script src="./ui/vue.js"></script>
+  <!-- 引入组件库 -->
+  <script src="./ui/index.js"></script>
+  <style>
+    body {
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
+    #app {
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .mint-tab-container {
+      height: 240px;
+      overflow-y: auto;
+    }
+    .mb-about-me {
+      height: 200px;
+      width: 80%
+    }
+  </style>
+ </head>
+ <body>
+  <div id="app">
+   <mt-button @click.native="handleSystemStat">系统信息</mt-button>
+   <mt-button @click.native="handleClick">关于</mt-button>
+    <mt-tab-container v-model="selected">
+     <mt-tab-container-item id="main-page" v-infinite-scroll>
+       <mt-cell title="CPU" :value="system_stat.cpu_load"></mt-cell>
+       <mt-cell title="Memery" :value="system_stat.memery_free"></mt-cell>
+     </mt-tab-container-item>
+     <mt-tab-container-item id="about-page">
+       <mt-cell title="版本号" :value="version"></mt-cell>
+     </mt-tab-container-item>
+    </mt-tab-container>
+    <mt-tabbar v-model="selected">
+      <mt-tab-item id="main-page">
+        主页
+      </mt-tab-item>
+      <mt-tab-item id="about-page">
+        关于
+      </mt-tab-item>
+    </mt-tabbar>
+    <mt-popup
+      v-model="popupVisible"
+      class="mb-about-me">
+      <mt-button type="default">default</mt-button>
+    </mt-popup>
+  </div>
+  <script src="./ui/app.js"></script>
+ </body>
+</html>
