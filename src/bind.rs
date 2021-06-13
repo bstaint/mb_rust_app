@@ -5,7 +5,7 @@ use miniblink::interface::Type::{jsExecState, jsValue, MB};
 use winapi::shared::minwindef::LPARAM;
 use winapi::um::winuser::{PostMessageW, PostQuitMessage};
 
-pub fn startup() {
+pub fn mb_startup() {
     use std::sync::Once;
     static STARTUP: Once = Once::new();
     STARTUP.call_once(|| {
@@ -17,10 +17,8 @@ pub fn startup() {
 }
 
 #[inline]
-pub fn quit() {
-    unsafe {
-        PostQuitMessage(0);
-    }
+pub fn mb_quit() {
+    unsafe { PostQuitMessage(0) }
 }
 
 pub fn js_update_website(_es: jsExecState) -> jsValue {
@@ -42,7 +40,7 @@ pub fn js_system_stat(_es: jsExecState) -> jsValue {
     std::thread::spawn(|| {
         let stat = system_stat();
         let hwnd = APP.hwnd.read().unwrap();
-        let param = Box::new(serde_json::to_string(&stat).unwrap());
+        let param = Box::new(serde_json::to_string(&stat).unwrap_or_default());
         unsafe {
             PostMessageW(*hwnd, MB_SYSTEM_STAT, 0, Box::into_raw(param) as LPARAM);
         };

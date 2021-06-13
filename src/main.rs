@@ -25,8 +25,8 @@ fn main() -> Result {
             ..Default::default()
         })
         .LoadFile("./template.html")
-        .OnWindowDestroy(quit)
-        .OnDocumentReady(startup)
+        .OnWindowDestroy(mb_quit)
+        .OnDocumentReady(mb_startup)
         // .OnLoadUrlBegin(|webView: Webview, params: i32, url: *const i8, job: Netjob| {
         //     job.HookRequest();
         // }, 0)
