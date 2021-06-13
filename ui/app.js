@@ -7,6 +7,7 @@ const vm = new Vue({
     system_stat: {
       cpu_load: 0,
       memery_free: 0,
+      mount: []
     }
   }),
   methods: {

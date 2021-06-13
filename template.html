@@ -19,7 +19,6 @@
       user-select: none;
     }
     .mint-tab-container {
-      height: 240px;
       overflow-y: auto;
     }
     .mb-about-me {
@@ -43,6 +42,10 @@
        <!-- <mt-cell title="CPU" :value="Math.round(system_stat.cpu_load * 100)+' %'"></mt-cell> -->
        <mt-progress :value="100 - Math.round(system_stat.cpu_load * 100)" :bar-height="5"><div class="mb-process-label" slot="start">CPU</div></mt-progress>
        <mt-cell title="Mem" :value="(system_stat.memery_free / Math.pow(1024, 3)).toFixed(2)+' G'"></mt-cell>
+       <mt-cell title="Disk"></mt-cell>
+       <mt-progress :value="100 - Math.round(m.free * 100)"  v-for="m in system_stat.mount">
+        <div slot="start" class="mb-process-label">{{ m.drive }}</div>
+       </mt-progress>
      </mt-tab-container-item>
      <mt-tab-container-item id="about-page">
        <mt-cell title="版本号" :value="version"></mt-cell>
