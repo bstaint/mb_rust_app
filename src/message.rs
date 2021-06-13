@@ -18,7 +18,7 @@ pub fn on_startup() -> LRESULT {
 
 pub fn on_system_stat(param: LPARAM) -> LRESULT {
     let json: Box<String> = unsafe { Box::from_raw(param as *mut _) };
-    // debug!("MB_SYSTEM_STAT lparam: {}", json);
+    debug!("MB_SYSTEM_STAT => {}", json);
     APP.mb
         .write()
         .unwrap()
@@ -28,7 +28,7 @@ pub fn on_system_stat(param: LPARAM) -> LRESULT {
 
 pub fn on_update(param: LPARAM) -> LRESULT {
     let _json: Box<String> = unsafe { Box::from_raw(param as *mut _) };
-    // debug!("MB_THREAD_MSG lparam: {}", json);
+    // debug!("MB_THREAD_MSG => {}", json);
     APP.mb.write().unwrap().RunJS(&format!(
         r#"
         vm.version = "{}";

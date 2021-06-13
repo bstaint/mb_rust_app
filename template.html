@@ -41,7 +41,7 @@
     <mt-tab-container v-model="selected">
      <mt-tab-container-item id="main-page" v-infinite-scroll>
        <!-- <mt-cell title="CPU" :value="Math.round(system_stat.cpu_load * 100)+' %'"></mt-cell> -->
-       <mt-progress :value="Math.round(system_stat.cpu_load * 100)" :bar-height="5"><div class="mb-process-label" slot="start">CPU</div></mt-progress>
+       <mt-progress :value="100 - Math.round(system_stat.cpu_load * 100)" :bar-height="5"><div class="mb-process-label" slot="start">CPU</div></mt-progress>
        <mt-cell title="Mem" :value="(system_stat.memery_free / Math.pow(1024, 3)).toFixed(2)+' G'"></mt-cell>
      </mt-tab-container-item>
      <mt-tab-container-item id="about-page">

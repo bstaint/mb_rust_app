@@ -16,7 +16,6 @@ fn cpu_load(system: &System) -> Option<f32> {
 
 pub fn system_stat() -> SystemStat {
     let system = System::new();
-
     SystemStat {
         cpu_load: cpu_load(&system),
         memery_free: system.memory().and_then(|m| Ok(m.free.as_u64())).ok(),

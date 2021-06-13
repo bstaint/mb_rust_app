@@ -24,7 +24,7 @@ fn main() -> Result {
             height: 400,
             ..Default::default()
         })
-        .LoadFile("./hello.html")
+        .LoadFile("./template.html")
         .OnWindowDestroy(quit)
         .OnDocumentReady(startup)
         // .OnLoadUrlBegin(|webView: Webview, params: i32, url: *const i8, job: Netjob| {
